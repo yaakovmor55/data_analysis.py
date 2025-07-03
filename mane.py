@@ -2,6 +2,7 @@ import  streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+
 movies_data = pd.read_csv("movies.csv")
 movies_data.dropna()
 st.write("""
@@ -28,7 +29,7 @@ with st.sidebar:
        to view the total number of movies in a genre that falls \
        within that range ")
     # create a slider to hold user scores
-    new_score_rating = st.slider(label="# Choose a Votes:",
+    new_score_rating = st.slider(label="# Choose a Score:",
                              min_value=1.0,
                              max_value=10.0,
                              value=(3.0, 4.0))
@@ -40,3 +41,6 @@ with st.sidebar:
 # create a select box option that holds all unique years
     year = st.selectbox('Choose a Year',
                     year_list, 0)
+
+score_info = (movies_data['score'].between(*new_score_rating))
+
